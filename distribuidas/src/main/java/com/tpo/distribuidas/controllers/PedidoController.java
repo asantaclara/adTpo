@@ -1,8 +1,5 @@
 package com.tpo.distribuidas.controllers;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,16 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tpo.distribuidas.exceptions.CodeAndMessageException;
 import com.tpo.distribuidas.exceptions.CodeAndMessageException.ErrorCode;
 import com.tpo.distribuidas.model.AuxiliarItemPedido;
-import com.tpo.distribuidas.model.ClienteViewDTO;
-import com.tpo.distribuidas.model.ItemPedidoViewDTO;
 import com.tpo.distribuidas.model.PedidoViewDTO;
 
 import controlador.Controlador;
 import exceptions.ClienteException;
 import exceptions.PedidoException;
 import exceptions.ProductoException;
-import view.ClienteView;
-import view.ItemPedidoView;
 import view.PedidoView;
 
 @RestController

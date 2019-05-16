@@ -14,18 +14,13 @@
 	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/AD_2019/TPO_Distribuidas/lib/jta-1.1.jar"/>
 	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/AD_2019/TPO_Distribuidas/lib/jtds-1.2.5.jar"/>
 	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/AD_2019/TPO_Distribuidas/lib/slf4j-api-1.5.6.jar"/>
-	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/extraLibs/mysql-connector-java-8.0.16.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.utility"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-8-openjdk-amd64">
+	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/AD_2019/TPO_Distribuidas/lib/slf4j-simple-1.5.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/AD_2019/TPO_Distribuidas/lib/slf4j-simple-1.5.6.jar"/>
-	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/extraLibs/jcifs-1.3.17.jar"/>
+	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/tp/extraLibs/jcifs-1.3.17.jar"/>
+	<classpathentry kind="lib" path="/home/alejandro/uade/distribuidas/tp/extraLibs/mysql-connector-java-8.0.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
