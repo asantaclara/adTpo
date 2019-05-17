@@ -28,17 +28,31 @@ public class ProductoController {
 
 	@RequestMapping("/get_productos")
 	public List<ProductoView> getProductos() {
-		return c.getProductos();
-	}
+		
+		try {
+			return c.getProductos();	
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
+		}
+	} 
 
 	@RequestMapping("/get_productos_by_rubro/{rubro}")
 	public List<ProductoView> getProductosByRubro(@PathVariable int rubro) {
-		return c.getProductosByRubro(new RubroView(rubro, null, true));
+		
+		try {
+			return c.getProductosByRubro(new RubroView(rubro, null, true));	
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
+		}
 	}
 
 	@RequestMapping("/get_productos_by_subrubro/{subRubro}")
 	public List<ProductoView> getProductosBySubrubro(@PathVariable int subRubro) {
-		return c.getProductosBySubRubro(new SubRubroView(subRubro, null, null));
+		try {
+			return c.getProductosBySubRubro(new SubRubroView(subRubro, null, null));	
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
+		}
 	}
 
 	@PostMapping("/alta_producto")
@@ -49,6 +63,8 @@ public class ProductoController {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.RUBRO_INEXISTENTE, "El rubro no existe");
 		} catch (SubRubroException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.SUBRUBRO_INEXISTENTE, "El subrubro no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 
@@ -58,6 +74,8 @@ public class ProductoController {
 			c.bajaProducto(new ProductoView(null, null, null, null, null, 0, codigoProducto));
 		} catch (ProductoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PRODUCTO_INEXISTENTE, "El producto no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
@@ -67,6 +85,8 @@ public class ProductoController {
 			c.modificaProducto(recibido.toProductoView());
 		} catch (ProductoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PRODUCTO_INEXISTENTE, "El producto no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	

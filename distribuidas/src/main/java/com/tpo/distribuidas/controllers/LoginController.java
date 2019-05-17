@@ -29,6 +29,8 @@ public class LoginController {
 				throw new CodeAndMessageException(HttpStatus.NOT_ACCEPTABLE, ErrorCode.PASSWORD_VENCIDA, "La password esta vencida, por favor cambiela");
 			} catch (UsuarioException e) {
 				throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.DATOS_INCORRECTOS, "El usuario no existe");
+			} catch (Exception e) {
+				throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 			}
 	}
 	
@@ -40,6 +42,8 @@ public class LoginController {
 			throw new CodeAndMessageException(HttpStatus.NOT_ACCEPTABLE, ErrorCode.PASSWORD_NO_SEGURA, "La password elegida no cumple con los requisitos de seguridad");
 		} catch (UsuarioException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.USUARIO_INEXISTENTE, "El usuario no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 }

@@ -29,6 +29,8 @@ public class PedidoController {
 			return c.getPedidoById(numero);
 		} catch (PedidoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
@@ -38,6 +40,8 @@ public class PedidoController {
 			c.facturarPedido(numero);
 		} catch (PedidoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
@@ -45,8 +49,10 @@ public class PedidoController {
 	public void eliminar(@PathVariable int numeroPedido){
 		try {
 			c.eliminarPedido(numeroPedido);	
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
@@ -58,6 +64,8 @@ public class PedidoController {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
 		} catch (ProductoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PRODUCTO_INEXISTENTE, "El producto no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
@@ -67,6 +75,8 @@ public class PedidoController {
 			return c.crearPedido(cuit);
 		} catch (ClienteException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.CLIENTE_INEXISTENTE, "El cliente no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
@@ -76,6 +86,8 @@ public class PedidoController {
 			return c.crearPedido(p.toPedidoView());
 		} catch (ClienteException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.CLIENTE_INEXISTENTE, "El cliente no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	

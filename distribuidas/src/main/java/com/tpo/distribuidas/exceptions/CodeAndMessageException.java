@@ -14,7 +14,8 @@ public class CodeAndMessageException extends RuntimeException {
 		PRODUCTO_INEXISTENTE, 
 		CLIENTE_INEXISTENTE, 
 		RUBRO_INEXISTENTE, 
-		SUBRUBRO_INEXISTENTE
+		SUBRUBRO_INEXISTENTE, 
+		ERROR_INESPERADO
 	}
 	
 	private HttpStatus httpStatus;
