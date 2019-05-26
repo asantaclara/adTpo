@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import daos.ClienteDAO;
@@ -72,6 +73,8 @@ public class Controlador {
 		Usuario usuario = UsuarioDAO.getInstancia().getUsuarioByNombre(nombre);
 		usuario.actualizoPassword(password);
 	}
+	
+	///////////////////////////// PRODUCTOS ////////////////////////////////////////////////
 	/*Probado*/
 	public void altaProducto(ProductoView recibido) throws RubroException, SubRubroException{
 		Rubro auxR = RubroDao.getInstancia().findByCodigo(recibido.getRubro().getCodigo());
@@ -90,6 +93,36 @@ public class Controlador {
 		Producto producto = ProductoDAO.getInstancia().findProductoByIdentificador(recibido.getIdentificador());
 		producto.update();
 	}
+	/*Probado*/
+	public List<ProductoView> getProductos(){
+		List<ProductoView> resultado = new ArrayList<ProductoView>();
+		List<Producto> productos = ProductoDAO.getInstancia().findAll();
+		for(Producto producto : productos)
+			resultado.add(producto.toView());
+		return resultado;
+	}
+	/*Probado*/
+	public List<ProductoView> getProductosByRubro(RubroView rubro){
+		List<ProductoView> resultado = new ArrayList<ProductoView>();
+		List<Producto> productos = ProductoDAO.getInstancia().findProductoByRubro(rubro.getCodigo());
+		for(Producto producto : productos)
+			resultado.add(producto.toView());
+		return resultado;
+	}
+	/*Probado*/
+	public List<ProductoView> getProductosBySubRubro(SubRubroView subRubro){
+		List<ProductoView> resultado = new ArrayList<ProductoView>();
+		List<Producto> productos = ProductoDAO.getInstancia().findProductoBySubRubro(subRubro.getCodigo());
+		for(Producto producto : productos)
+			resultado.add(producto.toView());
+		return resultado;
+	}
+	public ProductoView getProductoById(int id) throws ProductoException {
+		return ProductoDAO.getInstancia().findProductoByIdentificador(id).toView();
+	}
+
+	
+	///////////////////////////// PEDIDOS ////////////////////////////////////////////////
 	/*Probado*/
 	public int crearPedido(PedidoView pedido) throws ClienteException{
 		Cliente cliente = ClienteDAO.getInstancia().findClienteByCuit(pedido.getCliente().getCuil());
@@ -122,6 +155,19 @@ public class Controlador {
 	public PedidoView getPedidoById(int numero) throws PedidoException{
 		return PedidoDAO.getInstancia().findPedidoByNumero(numero).toView();
 	}
+	
+	public List<PedidoView> getPedidos(){
+		
+		List<PedidoView> returnList = new LinkedList<PedidoView>();
+		
+		for (Pedido p : PedidoDAO.getInstancia().getPedidos()) {
+			returnList.add(p.toView());
+		}
+		
+		return returnList;
+	}
+	
+	///////////////////////////// RUBROS ////////////////////////////////////////////////
 	/*Probado*/	
 	public List<RubroView> getRubros(){
 		List<RubroView> resultado = new ArrayList<RubroView>();
@@ -129,6 +175,12 @@ public class Controlador {
 			resultado.add(r.toView());
 		return resultado;
 	}
+	
+	public RubroView getRubroById(int codigo) throws RubroException {
+		return RubroDao.getInstancia().findByCodigo(codigo).toView();
+	}
+	
+	///////////////////////////// SUBRUBROS ////////////////////////////////////////////////
 	/*Probado*/
 	public List<SubRubroView> getSubRubros(){
 		List<SubRubroView> resultado = new ArrayList<SubRubroView>();
@@ -136,30 +188,19 @@ public class Controlador {
 			resultado.add(r.toView());
 		return resultado;
 	}
-	/*Probado*/
-	public List<ProductoView> getProductos(){
-		List<ProductoView> resultado = new ArrayList<ProductoView>();
-		List<Producto> productos = ProductoDAO.getInstancia().findAll();
-		for(Producto producto : productos)
-			resultado.add(producto.toView());
+	
+	public SubRubroView getSubRubroById(int codigo) throws SubRubroException {
+		return SubRubroDao.getInstancia().findByCodigo(codigo).toView();
+	}
+	
+	public List<SubRubroView> getSubRubrosByRubroId(int codigoRubro) throws RubroException {
+		List<SubRubroView> resultado = new ArrayList<SubRubroView>();
+		for(SubRubro r : SubRubroDao.getInstancia().getSubRubrosByRubroId(codigoRubro))
+			resultado.add(r.toView());
 		return resultado;
 	}
-	/*Probado*/
-	public List<ProductoView> getProductosByRubro(RubroView rubro){
-		List<ProductoView> resultado = new ArrayList<ProductoView>();
-		List<Producto> productos = ProductoDAO.getInstancia().findProductoByRubro(rubro.getCodigo());
-		for(Producto producto : productos)
-			resultado.add(producto.toView());
-		return resultado;
-	}
-	/*Probado*/
-	public List<ProductoView> getProductosBySubRubro(SubRubroView subRubro){
-		List<ProductoView> resultado = new ArrayList<ProductoView>();
-		List<Producto> productos = ProductoDAO.getInstancia().findProductoBySubRubro(subRubro.getCodigo());
-		for(Producto producto : productos)
-			resultado.add(producto.toView());
-		return resultado;
-	}
+
+	///////////////////////////// CLIENTES ////////////////////////////////////////////////
 	/*Probado*/
 	public List<ClienteView> getClientes(){
 		List<ClienteView> resultado = new ArrayList<ClienteView>();
@@ -168,5 +209,14 @@ public class Controlador {
 			resultado.add(cliente.toView());
 		return resultado;
 	}
+	
+	public ClienteView getCliente(String numero) throws ClienteException {
+		return ClienteDAO.getInstancia().findClienteById(numero).toView();
+	}
 
+	
+
+	
+
+	
 }

@@ -1,6 +1,9 @@
 package com.tpo.distribuidas.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tpo.distribuidas.exceptions.CodeAndMessageException;
 import com.tpo.distribuidas.exceptions.CodeAndMessageException.ErrorCode;
 import com.tpo.distribuidas.model.AuxiliarItemPedido;
-import com.tpo.distribuidas.model.PedidoViewDTO;
 
 import controlador.Controlador;
 import exceptions.ClienteException;
@@ -18,6 +20,7 @@ import exceptions.PedidoException;
 import exceptions.ProductoException;
 import view.PedidoView;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class PedidoController {
 
@@ -81,11 +84,20 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/crear_pedido")
-	public int crearPedido(@RequestBody PedidoViewDTO p) {
+	public int crearPedido(@RequestBody PedidoView p) {
 		try {
-			return c.crearPedido(p.toPedidoView());
+			return c.crearPedido(p);
 		} catch (ClienteException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.CLIENTE_INEXISTENTE, "El cliente no existe");
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
+		}
+	}
+	
+	@RequestMapping("/get_pedidos")
+	public List<PedidoView> getPedidos() {
+		try {
+			return c.getPedidos();
 		} catch (Exception e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}

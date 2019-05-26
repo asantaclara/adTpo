@@ -20,6 +20,36 @@ public class ProductoView {
 		this.identificador = identificador;
 	}
 
+	public ProductoView() {}
+	
+	public void setIdentificador(int identificador) {
+		this.identificador = identificador;
+	}
+
+	public void setSubRubro(SubRubroView subRubro) {
+		this.subRubro = subRubro;
+	}
+
+	public void setRubro(RubroView rubro) {
+		this.rubro = rubro;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public void setCodigoBarras(String codigoBarras) {
+		this.codigoBarras = codigoBarras;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
 	public int getIdentificador() {
 		return identificador;
 	}

@@ -1,6 +1,7 @@
 package com.tpo.distribuidas.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import exceptions.CambioPasswordException;
 import exceptions.LoginException;
 import exceptions.UsuarioException;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class LoginController {
 

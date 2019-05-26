@@ -49,6 +49,6 @@ public class ItemPedido {
 	}
 	
 	public ItemPedidoView toView(){
-		return new ItemPedidoView(producto.toView(), cantidad, precio);
+		return new ItemPedidoView(producto.toView(), cantidad, precio, numero);
 	}	
 }

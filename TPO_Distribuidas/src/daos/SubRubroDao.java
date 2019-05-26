@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import entities.SubRubroEntity;
+import exceptions.RubroException;
 import exceptions.SubRubroException;
 import hibernate.HibernateUtil;
 import negocio.Rubro;
@@ -54,5 +55,20 @@ public class SubRubroDao {
 	public SubRubroEntity toEntity(SubRubro recibido) {
 		SubRubroEntity resultado = new SubRubroEntity(recibido.getCodigo(), recibido.getDescripcion(), RubroDao.getInstancia().toEntity(recibido.getRubro()));
 		return resultado;
+	}
+
+	public List<SubRubro> getSubRubrosByRubroId(int codigoRubro) throws RubroException {
+		List<SubRubro> resultado = new ArrayList<SubRubro>();
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		List<SubRubroEntity> recuperados = s.createQuery("from SubRubroEntity where identificadorRubro = ?").setInteger(0, codigoRubro).list();		
+		if(recuperados.size() != 0) {
+			for(SubRubroEntity aux : recuperados)
+				resultado.add(this.toNegocio(aux));
+			return resultado;			
+		} else {
+			throw new RubroException("No existe un srubro con codigo " + codigoRubro);
+		}
 	}
 }

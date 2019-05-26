@@ -33,6 +33,17 @@ public class ClienteDAO {
 		else
 			throw new ClienteException("El Cliente con cuit " + cuit + " no existe");
 	}
+	
+	public Cliente findClienteById(String numero) throws ClienteException{
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		ClienteEntity recuperado = (ClienteEntity) s.createQuery("from ClienteEntity where numero = ?").setString(0, numero).uniqueResult();
+		if(recuperado != null)
+			return this.toNegocio(recuperado);
+		else
+			throw new ClienteException("El Cliente con numero " + numero + " no existe");
+	}
 
 	public List<Cliente> findAll(){
 		List<Cliente> resultado = new ArrayList<Cliente>();

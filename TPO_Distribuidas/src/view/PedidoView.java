@@ -20,8 +20,22 @@ public class PedidoView {
 		this.items = new ArrayList<ItemPedidoView>();
 	}
 
-	public PedidoView() {
-		// TODO Auto-generated constructor stub
+	public PedidoView() {}
+
+	public void setNumeroPedido(int numeroPedido) {
+		this.numeroPedido = numeroPedido;
+	}
+
+	public void setFechaPedido(Date fechaPedido) {
+		this.fechaPedido = fechaPedido;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public void setItems(List<ItemPedidoView> items) {
+		this.items = items;
 	}
 
 	public void addItemEnPedido(ItemPedidoView item){

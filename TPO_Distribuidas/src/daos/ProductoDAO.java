@@ -14,6 +14,7 @@ import hibernate.HibernateUtil;
 import negocio.Producto;
 import negocio.Rubro;
 import negocio.SubRubro;
+import view.ProductoView;
 
 public class ProductoDAO {
 
@@ -136,4 +137,5 @@ public class ProductoDAO {
 		ProductoEntity aux = new ProductoEntity(producto.getIdentificador(),auxSR, auxR,producto.getNombre(), producto.getMarca(), producto.getCodigoBarras(), producto.getPrecio());
 		return aux;
 	}
+
 }

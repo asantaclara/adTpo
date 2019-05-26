@@ -1,7 +1,7 @@
 package daos;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -13,7 +13,6 @@ import entities.PedidoEntity;
 import exceptions.PedidoException;
 import hibernate.HibernateUtil;
 import negocio.Cliente;
-import negocio.ItemPedido;
 import negocio.Pedido;
 import negocio.Producto;
 
@@ -65,6 +64,19 @@ public class PedidoDAO {
 		s.getTransaction().commit();	
 		return resultado;
 	}
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> resultado = new ArrayList<Pedido>();
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		List<PedidoEntity> recuperados = (List<PedidoEntity>) s.createQuery("from PedidoEntity").list();
+		for(PedidoEntity pe : recuperados)
+			resultado.add(this.toNegocio(pe));
+		s.getTransaction().commit();	
+		return resultado;
+	}
+	
 	/*OK*/
 	public void save(Pedido pedido){ 
 		PedidoEntity aux = toEntity(pedido);
