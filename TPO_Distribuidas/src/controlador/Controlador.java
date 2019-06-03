@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import daos.ClienteDAO;
+import daos.ItemPedidoDAO;
 import daos.PedidoDAO;
 import daos.ProductoDAO;
 import daos.RubroDao;
@@ -167,6 +168,10 @@ public class Controlador {
 		return returnList;
 	}
 	
+	public void eliminarProductoDePedido(int numeroPedido, int identificadorProducto) {
+		ItemPedidoDAO.getInstancia().eliminarItemDePedido(numeroPedido, identificadorProducto);
+	}
+	
 	///////////////////////////// RUBROS ////////////////////////////////////////////////
 	/*Probado*/	
 	public List<RubroView> getRubros(){
@@ -213,6 +218,8 @@ public class Controlador {
 	public ClienteView getCliente(String numero) throws ClienteException {
 		return ClienteDAO.getInstancia().findClienteById(numero).toView();
 	}
+
+	
 
 	
 

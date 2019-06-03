@@ -5,6 +5,7 @@ public class AuxiliarItemPedido {
 	private int numeroPedido;
 	private int identificadorProducto;
 	private int cantidad;
+	private int identificadorItem;
 
 	public int getNumeroPedido() {
 		return numeroPedido;
@@ -28,6 +29,14 @@ public class AuxiliarItemPedido {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public int getIdentificadorItem() {
+		return identificadorItem;
+	}
+
+	public void setIdentificadorItem(int identificadorItem) {
+		this.identificadorItem = identificadorItem;
 	}
 	
 	

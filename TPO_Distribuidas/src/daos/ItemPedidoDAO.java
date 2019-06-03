@@ -32,10 +32,12 @@ public class ItemPedidoDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		List<ItemPedidoEntity> recuperados = s.createQuery("from ItemPedidoEntity where pedido.numeroPedido = ?").setInteger(0, pedido.getNumeroPedido()).list();	
+		s.close();
 		for(ItemPedidoEntity pe : recuperados)
 			resultado.add(pe);
 		return resultado;
 	}
+	
 	public void save(Producto producto, int cantidad, Pedido pedido){
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
@@ -45,6 +47,17 @@ public class ItemPedidoDAO {
 			.setParameter(1, producto.getIdentificador())
 			.setParameter(2, cantidad)
 			.setParameter(3, producto.getPrecio())
+			.executeUpdate();
+		s.getTransaction().commit();
+	}
+	
+	public void eliminarItemDePedido(int codigoPedido, int codigoItem){
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		s.beginTransaction();
+		String delete = String.format("delete from itemsPedido where numeroItem = ? and numeroPedido = ?");
+		s.createSQLQuery(delete)
+			.setParameter(0, codigoItem)
+			.setParameter(1, codigoPedido)
 			.executeUpdate();
 		s.getTransaction().commit();
 	}

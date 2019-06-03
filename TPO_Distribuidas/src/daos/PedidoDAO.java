@@ -49,7 +49,6 @@ public class PedidoDAO {
 		for(PedidoEntity pe : recuperados)
 			resultado.add(this.toNegocio(pe));
 		s.getTransaction().commit();
-		
 		return resultado;
 	}
 	

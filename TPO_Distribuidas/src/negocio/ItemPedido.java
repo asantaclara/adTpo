@@ -14,14 +14,14 @@ public class ItemPedido {
 	public ItemPedido(Producto producto, int cantidad) {
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.precio = producto.getPrecio();
+		this.precio = producto.getPrecio()*cantidad;
 	}
 
 	public ItemPedido(int numero, Producto producto, int cantidad, float precio) {
 		this.numero = numero;
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.precio = precio;
+		this.precio = producto.getPrecio()*cantidad;
 	}
 
 	public void save(Pedido pedido) {

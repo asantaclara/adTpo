@@ -28,6 +28,7 @@ public class RubroDao {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		RubroEntity recuperado = (RubroEntity) s.createQuery("from RubroEntity where codigo = ?").setInteger(0, codigo).uniqueResult();
+		s.close();
 		if(recuperado != null)
 			return this.toNegocio(recuperado);
 		else
@@ -40,6 +41,7 @@ public class RubroDao {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		List<RubroEntity> recuperados = s.createQuery("from RubroEntity").list();		
+		s.close();
 		for(RubroEntity aux : recuperados)
 			resultado.add(this.toNegocio(aux));
 		return resultado;

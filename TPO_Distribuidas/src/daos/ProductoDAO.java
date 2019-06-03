@@ -33,6 +33,7 @@ public class ProductoDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		ProductoEntity recuperado = (ProductoEntity) s.createQuery("from ProductoEntity where codigoBarras = ?").setString(0, codigoBarras).uniqueResult();	
+		s.close();
 		if(recuperado != null)
 			return this.toNegocio(recuperado);
 		else
@@ -44,6 +45,7 @@ public class ProductoDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		ProductoEntity recuperado = (ProductoEntity) s.createQuery("from ProductoEntity where identificador = ?").setInteger(0, identificador).uniqueResult();	
+		s.close();
 		if(recuperado != null)
 			return this.toNegocio(recuperado);
 		else
@@ -58,6 +60,7 @@ public class ProductoDAO {
 		List<ProductoEntity> recuperados = s.createQuery("from ProductoEntity").list();	
 		for(ProductoEntity pe : recuperados)
 			resultado.add(this.toNegocio(pe));
+		s.close();
 		return resultado;
 	}
 	
@@ -69,6 +72,7 @@ public class ProductoDAO {
 		List<ProductoEntity> recuperados = s.createQuery("from ProductoEntity where rubro.codigo = ?").setInteger(0, identificadorRubro).list();	
 		for(ProductoEntity pe : recuperados)
 			resultado.add(this.toNegocio(pe));
+		s.close();
 		return resultado;
 	}
 
@@ -80,6 +84,7 @@ public class ProductoDAO {
 		List<ProductoEntity> recuperados = s.createQuery("from ProductoEntity where subRubro.codigo = ?").setInteger(0, identificadorSubRubro).list();	
 		for(ProductoEntity pe : recuperados)
 			resultado.add(this.toNegocio(pe));
+		s.close();
 		return resultado;
 	}
 	
@@ -91,6 +96,7 @@ public class ProductoDAO {
 		List<ProductoEntity> recuperados = s.createQuery("from ProductoEntity where marca = ?").setString(0, marca).list();	
 		for(ProductoEntity pe : recuperados)
 			resultado.add(this.toNegocio(pe));
+		s.close();
 		return resultado;
 	}
 	

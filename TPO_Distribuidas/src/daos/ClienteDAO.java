@@ -28,6 +28,7 @@ public class ClienteDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		ClienteEntity recuperado = (ClienteEntity) s.createQuery("from ClienteEntity where cuit = ?").setString(0, cuit).uniqueResult();
+		s.close();
 		if(recuperado != null)
 			return this.toNegocio(recuperado);
 		else
@@ -39,6 +40,7 @@ public class ClienteDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		ClienteEntity recuperado = (ClienteEntity) s.createQuery("from ClienteEntity where numero = ?").setString(0, numero).uniqueResult();
+		s.close();
 		if(recuperado != null)
 			return this.toNegocio(recuperado);
 		else
@@ -53,6 +55,7 @@ public class ClienteDAO {
 		List<ClienteEntity> recuperados = (List<ClienteEntity>) s.createQuery("from ClienteEntity").list();
 		for(ClienteEntity ce : recuperados)
 			resultado.add(toNegocio(ce));
+		s.close();
 		return resultado;
 	}
 	

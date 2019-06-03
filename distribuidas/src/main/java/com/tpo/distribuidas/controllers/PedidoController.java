@@ -37,6 +37,15 @@ public class PedidoController {
 		}
 	}
 	
+	@RequestMapping("/eliminar_producto_de_pedido")
+	public void eliminarProductoDePedido(@RequestBody AuxiliarItemPedido item) {
+		try {
+			c.eliminarProductoDePedido(item.getNumeroPedido(), item.getIdentificadorItem());
+		} catch (Exception e) {
+			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
+		}
+	}
+	
 	@PostMapping("/facturar_pedido/{numero}")
 	public void facturar(@PathVariable int numero) {
 		try {

@@ -30,6 +30,7 @@ public class SubRubroDao {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		SubRubroEntity recuperado = (SubRubroEntity) s.createQuery("from SubRubroEntity where codigo = ?").setInteger(0, codigo).uniqueResult();
+		s.close();
 		if(recuperado != null)
 			return this.toNegocio(recuperado);
 		else
@@ -44,6 +45,7 @@ public class SubRubroDao {
 		List<SubRubroEntity> recuperados = s.createQuery("from SubRubroEntity").list();		
 		for(SubRubroEntity aux : recuperados)
 			resultado.add(this.toNegocio(aux));
+		s.close();
 		return resultado;
 	}
 	
@@ -63,6 +65,7 @@ public class SubRubroDao {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		List<SubRubroEntity> recuperados = s.createQuery("from SubRubroEntity where identificadorRubro = ?").setInteger(0, codigoRubro).list();		
+		s.close();
 		if(recuperados.size() != 0) {
 			for(SubRubroEntity aux : recuperados)
 				resultado.add(this.toNegocio(aux));
