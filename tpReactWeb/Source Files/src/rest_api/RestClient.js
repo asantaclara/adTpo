@@ -20,6 +20,8 @@ class RestClient {
   static BAJA_PEDIDO = "/eliminar_pedido/";
   static FACTURAR_PEDIDO = "/facturar_pedido/";
   static ELIMINAR_ITEM = "/eliminar_producto_de_pedido";
+  static LOGIN = "/login";
+
 
 
 static getClientes() {
@@ -160,6 +162,16 @@ static getClientes() {
 
     static facturarPedido(data) {
         return fetch(RestClient.API_URL + RestClient.FACTURAR_PEDIDO + data, {
+            method: 'POST',
+            headers: {
+                'Accept':       'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: data
+        });
+    }
+    static login(data) {
+        return fetch(RestClient.API_URL + RestClient.LOGIN, {
             method: 'POST',
             headers: {
                 'Accept':       'application/json',

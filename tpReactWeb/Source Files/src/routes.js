@@ -18,6 +18,8 @@ import Pedido from "./views/Pedido";
 import AgregarItemEnPedido from "./views/AgregarItemEnPedido";
 import Productos from "./views/Productos";
 import AltaProducto from "./views/AltaProducto";
+import Login from "./views/Login";
+
 
 export default [
   {
@@ -90,5 +92,10 @@ export default [
     path: "/nuevo-producto",
     layout: DefaultLayout,
     component: AltaProducto
+  },
+  {
+    path: "/login",
+    layout: DefaultLayout,
+    component: Login
   },
 ];

@@ -16,20 +16,17 @@ class Productos extends Component {
   }
 
   componentWillMount() {
-    this.fetchPedidos();
+    this.fetchProductos();
   }
 
-  fetchPedidos() {
+  fetchProductos() {
     RestClient.getProductos().then(json => {
       this.setState({productos: json, isLoaded: true})
     });
   }
 
-  handlerVerClickItem(numeroProducto) {
-    this.props.history.push('/producto/' + numeroProducto)
-  }
   handlerEliminarClickItem(numeroProducto) {
-    RestClient.bajaProducto(numeroProducto).then(data => this.fetchPedidos());
+    RestClient.bajaProducto(numeroProducto).then(data => this.fetchProductos());
   }
   handlerNuevoProductoClick() {
     this.props.history.push('/nuevo-producto')
@@ -46,7 +43,7 @@ class Productos extends Component {
           <Row noGutters className="page-header py-4">
             <div>
               <div className="float-left">
-                <PageTitle sm="4" title="Pedidos" className="text-sm-left"/>
+                <PageTitle sm="4" title="Productos" className="text-sm-left"/>
               </div>
               <div className="float-right">
                 <Button size="sm" theme="info" className="mb-2 mr-1" onClick={this.handlerNuevoProductoClick.bind(this)}>
@@ -72,7 +69,7 @@ class Productos extends Component {
                       <th>SubRubro</th>
                       <th>Codigo</th>
                       <th>Precio Unitario</th>
-                      <th></th>
+                      <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,11 +83,7 @@ class Productos extends Component {
                           <td>{item.subRubro.descripcion}</td>
                           <td>{item.codigoBarras}</td>
                           <td>{item.precio}</td>
-                          <td></td>
                           <td>
-                            <Button theme="secondary" className="mb-2 mr-1" onClick={this.handlerVerClickItem.bind(this,item.identificador)}>
-                              Ver/Editar
-                            </Button>
                             <Button theme="danger" className="mb-2 mr-1" onClick={this.handlerEliminarClickItem.bind(this,item.identificador)}>
                               Eliminar
                             </Button>
