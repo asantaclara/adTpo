@@ -10,7 +10,6 @@ import {
   Row
 } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
-import RubrosSubRubrosProductoSelect from "../components/Productos/RubrosSubRubrosProductoSelect";
 import NuevoProducto from "../components/Productos/NuevoProducto";
 
 class AltaProducto extends Component {

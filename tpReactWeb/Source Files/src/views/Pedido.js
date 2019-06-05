@@ -13,14 +13,6 @@ class Pedido extends Component {
     }
   }
 
-  handleClientItemClick(numero) {
-    this.props.history.push('/cliente/' + numero)
-  }
-
-  handleProductItemClick(identificador) {
-    this.props.history.push('/producto/' + identificador)
-  }
-
   handlerEliminarPedidoClick(numeroPedido) {
     RestClient.bajaPedido(numeroPedido).then(data => this.props.history.push('/pedidos'));
   }
@@ -37,7 +29,9 @@ class Pedido extends Component {
   }
 
   handlerAgregarItemClick(numeroPedido) {
-    this.props.history.push('/agregar-item-en-pedido/' + numeroPedido)
+    if(numeroPedido){
+      this.props.history.push('/agregar-item-en-pedido/' + numeroPedido)
+    }
   }
 
   componentWillMount() {

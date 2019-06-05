@@ -23,7 +23,9 @@ class AgregarItemEnPedido extends Component {
     this.rubrosSubRubrosProductoSelect = React.createRef();
   }
   handlerVolverAPedidoClick(numeroPedido){
-    this.props.history.push('/pedido/' + numeroPedido)
+    if(numeroPedido) {
+      this.props.history.push('/pedido/' + numeroPedido)
+    }
   }
 
   handleSubmit(event) {

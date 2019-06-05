@@ -50,12 +50,11 @@ class LoginInterno extends Component {
 
   handleLoginSubmit(event) {
     event.preventDefault();
-    console.log('Pedido abierto');
     const data = JSON.stringify({
       nombre:  this.state.usuario,
       password: this.state.password
     });
-    RestClient.login(data);
+    console.log(RestClient.login(data));
   }
 
   render() {
@@ -71,10 +70,10 @@ class LoginInterno extends Component {
             <tbody>
               <tr>
                 <td>
-                    <Button onClick={this.handleLoginSubmit}>Ingresar al sistema</Button>
+                    <Button onClick={this.handleLoginSubmit.bind(this)}>Ingresar al sistema</Button>
                 </td>
                 <td>
-                    <Button onClick={this.handleChangeSubmit}>Cambiar Password</Button>
+                    <Button onClick={this.handleChangeSubmit.bind(this)}>Cambiar Password</Button>
                 </td>
               </tr>
             </tbody>
