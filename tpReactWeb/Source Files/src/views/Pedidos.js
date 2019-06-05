@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
-
 import PageTitle from "../components/common/PageTitle";
 import RestClient from "../rest_api/RestClient";
 import { Button } from "shards-react";

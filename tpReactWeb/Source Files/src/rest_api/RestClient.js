@@ -1,16 +1,16 @@
 class RestClient {
-    static API_URL = "http://localhost:8080";
-    static GET_CLIENTES = "/get_clientes";
-    static GET_CLIENTE = "/get_cliente/";
-    static GET_PEDIDOS = "/get_pedidos";
-    static GET_PEDIDO = "/get_pedido_by_id/";
-    static GET_PRODUCTOS = "/get_productos";
-    static GET_PRODUCTO = "/get_producto_by_id/";
-    static GET_SUBRUBROS = "/get_subrubros";
-    static GET_SUBRUBRO = "/get_subrubro_by_id/";
-    static GET_RUBROS = "/get_rubros";
-    static GET_RUBRO = "/get_rubro_by_id/";
-    static GET_SUBRUBROS_BY_RUBRO = "/get_subrubros_by_rubro_id/";
+  static API_URL = "http://localhost:8080";
+  static GET_CLIENTES = "/get_clientes";
+  static GET_CLIENTE = "/get_cliente/";
+  static GET_PEDIDOS = "/get_pedidos";
+  static GET_PEDIDO = "/get_pedido_by_id/";
+  static GET_PRODUCTOS = "/get_productos";
+  static GET_PRODUCTO = "/get_producto_by_id/";
+  static GET_SUBRUBROS = "/get_subrubros";
+  static GET_SUBRUBRO = "/get_subrubro_by_id/";
+  static GET_RUBROS = "/get_rubros";
+  static GET_RUBRO = "/get_rubro_by_id/";
+  static GET_SUBRUBROS_BY_RUBRO = "/get_subrubros_by_rubro_id/";
   static GET_PRODUCTOS_BY_SUBRUBRO = "/get_productos_by_subrubro/";
   static ALTA_PRODUCTO = "/alta_producto";
   static BAJA_PRODUCTO = "/baja_producto/";
@@ -24,59 +24,92 @@ class RestClient {
 
 
 
-static getClientes() {
+    static getClientes() {
         return fetch(RestClient.API_URL + RestClient.GET_CLIENTES)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getCliente(numero) {
         return fetch(RestClient.API_URL + RestClient.GET_CLIENTE + numero)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getPedidos() {
         return fetch(RestClient.API_URL + RestClient.GET_PEDIDOS)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getPedido(numeroPedido) {
         return fetch(RestClient.API_URL + RestClient.GET_PEDIDO + numeroPedido)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getProductos() {
         return fetch(RestClient.API_URL + RestClient.GET_PRODUCTOS)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getProducto(identificador) {
         return fetch(RestClient.API_URL + RestClient.GET_PRODUCTO + identificador)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getSubRubros() {
         return fetch(RestClient.API_URL + RestClient.GET_SUBRUBROS)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getSubRubro(codigo) {
         return fetch(RestClient.API_URL + RestClient.GET_SUBRUBRO + codigo)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getRubros() {
         return fetch(RestClient.API_URL + RestClient.GET_RUBROS)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getRubro(codigo) {
         return fetch(RestClient.API_URL + RestClient.GET_RUBRO + codigo)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static getSubRubrosByRubro(codigoRubro) {
         return fetch(RestClient.API_URL + RestClient.GET_SUBRUBROS_BY_RUBRO + codigoRubro)
-            .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error))
     }
 
     static altaProducto(data) {
@@ -87,7 +120,10 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
     static bajaProducto(data) {
@@ -98,7 +134,10 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
     static modificarProducto(data) {
@@ -109,12 +148,18 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
     static getProductosBySubRubro(codigoSubRubro) {
       return fetch(RestClient.API_URL + RestClient.GET_PRODUCTOS_BY_SUBRUBRO + codigoSubRubro)
-        .then(response => response.json());
+        .then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
     static altaPedido(data) {
@@ -125,7 +170,10 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        }).then(response => response.json());
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
     static agregarAPedido(data) {
@@ -136,7 +184,10 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
   static eliminarItemDePedido(data) {
@@ -147,7 +198,10 @@ static getClientes() {
         'Content-Type': 'application/json',
       },
       body: data
-    });
+    }).then(
+      response => this.handleServerResponse(response),
+      error => this.handleServerError(error)
+    ).catch(error => this.handleServerError(error));
   }
 
     static bajaPedido(data) {
@@ -157,7 +211,10 @@ static getClientes() {
                 'Accept':       'application/json',
                 'Content-Type': 'application/json',
             }
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
     static facturarPedido(data) {
@@ -168,7 +225,10 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
     static login(data) {
         return fetch(RestClient.API_URL + RestClient.LOGIN, {
@@ -178,8 +238,28 @@ static getClientes() {
                 'Content-Type': 'application/json',
             },
             body: data
-        });
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
     }
 
+    static handleServerResponse(response) {
+      if (response.ok) {
+        return response.json();
+      }
+      response.json().then(response => {
+        const codeAndMessage = response.message;
+        const message = codeAndMessage.substring(codeAndMessage.indexOf('-') + 1, codeAndMessage.length);
+        alert('Error: ' + message.trim());
+      });
+      return null;
+    }
+
+  static handleServerError(error) {
+    console.log(error);
+    alert('Error inesperado');
+    return null;
+  }
 }
 export default RestClient;

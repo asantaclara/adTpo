@@ -24,14 +24,16 @@ class AltaPedido extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('Pedido abierto');
+    console.log('Abriendo pedido');
     const data = JSON.stringify({
       cliente:  this.clienteSelectCallbacks.getClienteValue()});
     RestClient.altaPedido(data).then(response => this.irANuevoPedido(response));
   }
 
   irANuevoPedido(numeroPedido){
-    this.props.history.push('/pedido/' + numeroPedido);
+    if (numeroPedido) {
+      this.props.history.push('/pedido/' + numeroPedido);
+    }
   }
 
   render() {

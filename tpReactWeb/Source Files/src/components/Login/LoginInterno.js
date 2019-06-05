@@ -13,7 +13,7 @@ class LoginInterno extends Component {
   }
 
   getUsuarioValue(){
-    return this.state.usuarip
+    return this.state.usuario
   }
 
   getPasswordValue(){
@@ -40,7 +40,7 @@ class LoginInterno extends Component {
     });
   };
 
-  handleLoginSubmit(event) {
+  handleChangeSubmit(event) {
     event.preventDefault();
     console.log('LoginInterno');
     const data = JSON.stringify({
@@ -68,12 +68,16 @@ class LoginInterno extends Component {
           <FormInput type="password" id="feInputPass" onChange={this.changePasswordHandler}/>
           <br/>
           <table>
-            <td>
-                <Button onClick={this.handleLoginSubmit}>Ingresar al sistema</Button>
-            </td>
-            <td>
-                <Button onClick={this.handleChangeSubmit}>Cambiar Password</Button>
-            </td>
+            <tbody>
+              <tr>
+                <td>
+                    <Button onClick={this.handleLoginSubmit}>Ingresar al sistema</Button>
+                </td>
+                <td>
+                    <Button onClick={this.handleChangeSubmit}>Cambiar Password</Button>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       );
