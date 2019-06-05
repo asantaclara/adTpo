@@ -21,6 +21,7 @@ class RestClient {
   static FACTURAR_PEDIDO = "/facturar_pedido/";
   static ELIMINAR_ITEM = "/eliminar_producto_de_pedido";
   static LOGIN = "/login";
+  static CAMBIAR_PASSWORD = "/cambiar_password";
 
 
 
@@ -232,6 +233,20 @@ class RestClient {
     }
     static login(data) {
         return fetch(RestClient.API_URL + RestClient.LOGIN, {
+            method: 'POST',
+            headers: {
+                'Accept':       'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: data
+        }).then(
+          response => this.handleServerResponse(response),
+          error => this.handleServerError(error)
+        ).catch(error => this.handleServerError(error));
+    }
+
+    static cambiarPassword(data) {
+        return fetch(RestClient.API_URL + RestClient.CAMBIAR_PASSWORD, {
             method: 'POST',
             headers: {
                 'Accept':       'application/json',
