@@ -4,6 +4,8 @@ import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
 import RestClient from "../rest_api/RestClient";
 import { Button } from "shards-react";
+import RubrosSubRubroSelect from "../components/Productos/RubroSubRubroSelect";
+import ClientesSelect from "../components/Clientes/ClientesSelect";
 
 class Productos extends Component {
 
@@ -34,6 +36,11 @@ class Productos extends Component {
   handlerNuevoProductoClick() {
     this.props.history.push('/nuevo-producto')
   }
+  handlerActualizarLista() {
+    RestClient.getProductosBySubRubro(this.subRubroSelectCallbacks.getSubRubroValue()).then(json => {
+      this.setState({productos: json, isLoaded: true})
+    });
+  }
 
   render() {
     var {isLoaded, productos} = this.state;
@@ -59,7 +66,11 @@ class Productos extends Component {
             <Col>
               <Card small className="mb-4">
                 <CardHeader className="border-bottom">
-
+                  <RubrosSubRubroSelect ref={this.subRubroSelect} onMounted={callbacks => this.subRubroSelectCallbacks=callbacks}/>
+                  <br/>
+                  <Button theme="primary" className="mb-2 mr-1" onClick={this.handlerActualizarLista.bind(this)}>
+                    Actualizar Lista
+                  </Button>
                 </CardHeader>
                 <CardBody className="p-0 pb-3">
                   <table className="table mb-0">
