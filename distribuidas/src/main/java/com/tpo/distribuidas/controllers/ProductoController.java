@@ -68,9 +68,10 @@ public class ProductoController {
 	}
 
 	@PostMapping("/alta_producto")
-	public void altaProducto(@RequestBody ProductoView producto){
+	public int altaProducto(@RequestBody ProductoView producto){
 		try {
 			c.altaProducto(producto);
+			return 1;
 		} catch (RubroException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.RUBRO_INEXISTENTE, "El rubro no existe");
 		} catch (SubRubroException e) {
@@ -81,9 +82,10 @@ public class ProductoController {
 	}
 
 	@PostMapping("/baja_producto/{codigoProducto}")
-	public void bajaProducto(@PathVariable int codigoProducto) {
+	public int bajaProducto(@PathVariable int codigoProducto) {
 		try {
 			c.bajaProducto(new ProductoView(null, null, null, null, null, 0, codigoProducto));
+			return 1;
 		} catch (ProductoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PRODUCTO_INEXISTENTE, "El producto no existe");
 		} catch (Exception e) {
@@ -92,9 +94,10 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/modificar_producto")
-	public void bajaProducto(@RequestBody ProductoView recibido) {
+	public int bajaProducto(@RequestBody ProductoView recibido) {
 		try {
 			c.modificaProducto(recibido);
+			return 1;
 		} catch (ProductoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PRODUCTO_INEXISTENTE, "El producto no existe");
 		} catch (Exception e) {

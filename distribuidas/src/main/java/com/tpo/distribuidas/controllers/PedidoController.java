@@ -38,18 +38,20 @@ public class PedidoController {
 	}
 	
 	@RequestMapping("/eliminar_producto_de_pedido")
-	public void eliminarProductoDePedido(@RequestBody AuxiliarItemPedido item) {
+	public int eliminarProductoDePedido(@RequestBody AuxiliarItemPedido item) {
 		try {
 			c.eliminarProductoDePedido(item.getNumeroPedido(), item.getIdentificadorItem());
+			return 1;
 		} catch (Exception e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
 	}
 	
 	@PostMapping("/facturar_pedido/{numero}")
-	public void facturar(@PathVariable int numero) {
+	public int facturar(@PathVariable int numero) {
 		try {
 			c.facturarPedido(numero);
+			return 1;
 		} catch (PedidoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
 		} catch (Exception e) {
@@ -58,9 +60,10 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/eliminar_pedido/{numeroPedido}")
-	public void eliminar(@PathVariable int numeroPedido){
+	public int eliminar(@PathVariable int numeroPedido){
 		try {
 			c.eliminarPedido(numeroPedido);	
+			return 1;
 		} catch (NullPointerException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
 		} catch (Exception e) {
@@ -69,9 +72,10 @@ public class PedidoController {
 	}
 	
 	@PostMapping("/agregar_producto_en_pedido")
-	public void agregarProductoEnPedido(@RequestBody AuxiliarItemPedido item){
+	public int agregarProductoEnPedido(@RequestBody AuxiliarItemPedido item){
 		try {
 			c.agregarProductoEnPedido(item.getNumeroPedido(), item.getIdentificadorProducto(), item.getCantidad());
+			return 1;
 		} catch (PedidoException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.PEDIDO_INEXISTENTE, "El pedido no existe");
 		} catch (ProductoException e) {

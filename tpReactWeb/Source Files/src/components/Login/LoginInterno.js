@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RestClient from "../../rest_api/RestClient";
-import {Button,FormSelect, Col, FormInput} from "shards-react";
+import {Button, FormInput} from "shards-react";
 
 class LoginInterno extends Component {
 
@@ -42,10 +42,11 @@ class LoginInterno extends Component {
 
   handleChangeSubmit(event) {
     event.preventDefault();
-    console.log('LoginInterno');
     const data = JSON.stringify({
-      cliente:  this.clienteSelectCallbacks.getClienteValue()});
-    RestClient.altaPedido(data);
+      nombre:  this.state.usuario,
+      password: this.state.password
+    });
+    RestClient.cambiarPassword(data);
   }
 
   handleLoginSubmit(event) {
@@ -54,7 +55,7 @@ class LoginInterno extends Component {
       nombre:  this.state.usuario,
       password: this.state.password
     });
-    console.log(RestClient.login(data));
+    RestClient.login(data).then(response => (response) ? alert("Usuario Logueado"): "");
   }
 
   render() {

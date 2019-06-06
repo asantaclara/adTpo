@@ -37,9 +37,10 @@ public class LoginController {
 	}
 	
 	@PostMapping("/cambiar_password")
-	public void cambiarPassword(@RequestBody UsuarioViewDTO usuario) {
+	public int cambiarPassword(@RequestBody UsuarioViewDTO usuario) {
 		try {
 			c.cambioPassword(usuario.getNombre(), usuario.getPassword());
+			return 1;
 		} catch (CambioPasswordException e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_ACCEPTABLE, ErrorCode.PASSWORD_NO_SEGURA, "La password elegida no cumple con los requisitos de seguridad");
 		} catch (UsuarioException e) {

@@ -3,11 +3,6 @@ import { Container } from "shards-react";
 import LoginInterno from "../components/Login/LoginInterno";
 
 class Login extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Container fluid className="main-content-container px-4 pb-4">
