@@ -9,6 +9,7 @@ class LoginInterno extends Component {
     this.state  = {
       usuario: '',
       password: '',
+      logueado: false
     };
   }
 
@@ -46,7 +47,14 @@ class LoginInterno extends Component {
       nombre:  this.state.usuario,
       password: this.state.password
     });
-    RestClient.cambiarPassword(data);
+    if(this.state.logueado){
+      RestClient.cambiarPassword(data).then(response => (response) ? alert("Password Cambiada"): "");
+      this.setState({
+        logueado: false
+      });
+    } else {
+      alert("El usuario no fue verificado, logueese");
+    }
   }
 
   handleLoginSubmit(event) {
@@ -55,7 +63,14 @@ class LoginInterno extends Component {
       nombre:  this.state.usuario,
       password: this.state.password
     });
-    RestClient.login(data).then(response => (response) ? alert("Usuario Logueado"): "");
+    RestClient.login(data).then(response => (response) ? this.usuarioLogueadoHandler(): "");
+  }
+
+  usuarioLogueadoHandler(){
+    this.setState({
+      logueado: true
+    });
+    alert("Bienvenido")
   }
 
   render() {

@@ -28,6 +28,9 @@ class Productos extends Component {
   handlerEliminarClickItem(numeroProducto) {
     RestClient.bajaProducto(numeroProducto).then(data => this.fetchProductos());
   }
+  handlerProductoClickItem(numeroProducto) {
+    this.props.history.push('/producto/' + numeroProducto)
+  }
   handlerNuevoProductoClick() {
     this.props.history.push('/nuevo-producto')
   }
@@ -70,6 +73,7 @@ class Productos extends Component {
                       <th>Codigo</th>
                       <th>Precio Unitario</th>
                       <th>Acciones</th>
+                      <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,6 +90,11 @@ class Productos extends Component {
                           <td>
                             <Button theme="danger" className="mb-2 mr-1" onClick={this.handlerEliminarClickItem.bind(this,item.identificador)}>
                               Eliminar
+                            </Button>
+                          </td>
+                          <td>
+                            <Button theme="success" className="mb-2 mr-1" onClick={this.handlerProductoClickItem.bind(this,item.identificador)}>
+                              Ver
                             </Button>
                           </td>
                         </tr>

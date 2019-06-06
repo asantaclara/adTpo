@@ -13,6 +13,7 @@ import AgregarItemEnPedido from "./views/AgregarItemEnPedido";
 import Productos from "./views/Productos";
 import AltaProducto from "./views/AltaProducto";
 import Login from "./views/Login";
+import Producto from "./views/Producto";
 
 
 export default [
@@ -21,6 +22,11 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: () => <Redirect to="/login" />
+  },
+  {
+    path: "/producto/:identificador",
+    layout: DefaultLayout,
+    component: Producto
   },
   {
     path: "/components-overview",
