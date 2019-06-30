@@ -157,19 +157,16 @@ public class Controlador {
 		return PedidoDAO.getInstancia().findPedidoByNumero(numero).toView();
 	}
 	
-	public List<PedidoView> getPedidos(){
-		
-		List<PedidoView> returnList = new LinkedList<PedidoView>();
-		
-		for (Pedido p : PedidoDAO.getInstancia().getPedidos()) {
-			returnList.add(p.toView());
-		}
-		
-		return returnList;
-	}
-	
 	public void eliminarProductoDePedido(int numeroPedido, int identificadorProducto) {
 		ItemPedidoDAO.getInstancia().eliminarItemDePedido(numeroPedido, identificadorProducto);
+	}
+	
+	public List<PedidoView> getPedidos(String clienteId, String estado) {
+		List<PedidoView> returnList = new LinkedList<PedidoView>();
+		for (Pedido p : PedidoDAO.getInstancia().getPedidos(estado, clienteId)) {
+			returnList.add(p.toView());
+		}
+		return returnList;
 	}
 	
 	///////////////////////////// RUBROS ////////////////////////////////////////////////
@@ -218,6 +215,8 @@ public class Controlador {
 	public ClienteView getCliente(String numero) throws ClienteException {
 		return ClienteDAO.getInstancia().findClienteById(numero).toView();
 	}
+
+	
 
 	
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tpo.distribuidas.exceptions.CodeAndMessageException;
@@ -108,9 +109,9 @@ public class PedidoController {
 	}
 	
 	@RequestMapping("/get_pedidos")
-	public List<PedidoView> getPedidos() {
+	public List<PedidoView> getPedidos(@RequestParam(required = false) String clienteId, @RequestParam(required = false) String estado) {
 		try {
-			return c.getPedidos();
+			return c.getPedidos(clienteId, estado);
 		} catch (Exception e) {
 			throw new CodeAndMessageException(HttpStatus.NOT_FOUND, ErrorCode.ERROR_INESPERADO, "Ha ocurrido un error inesperado");
 		}
